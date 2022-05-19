@@ -1,6 +1,7 @@
-Common Code Bank:
+-------JAVAFX COMMON CODE BANK-------
+--------Curated by: Sean Yang--------
 
-Imports:
+--------------PACKAGES---------------
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
