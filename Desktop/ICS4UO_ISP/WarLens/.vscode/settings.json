@@ -1,0 +1,15 @@
+{
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx-swt.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.base.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.controls.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.fxml.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.graphics.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.media.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.swing.jar",
+    "/Users/vladsurdu/Desktop/javafx-sdk-18.0.1/lib/javafx.web.jar"
+  ]
+}
