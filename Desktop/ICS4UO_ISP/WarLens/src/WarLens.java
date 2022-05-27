@@ -12,18 +12,13 @@ public class WarLens extends Application {
 
     public void start(Stage splashStage) throws IOException{
 
-        loadArr(30, 30);
+        loadArr(1000, 1000);
 
         Group root = new Group();
         
         displayArr(0,0,root);
 
-        
-
-        System.out.println(root.getChildren());
-        // System.out.println(collisionCheck(118, 163));
-
-        Scene scene = new Scene(root, 300, 300);
+        Scene scene = new Scene(root, 1920, 1000);
         
 
         splashStage.setTitle("Map Test");
@@ -45,11 +40,8 @@ public class WarLens extends Application {
         for (int row = 0; row < pictureArr.length; row++){
             for (int col = 0; col < pictureArr[0].length; col++){
                 PicturePixel p = pictureArr[row][col];
-                p.imageView.setX(x+col*(p.sideLength+1));
-                p.imageView.setY(y+row*(p.sideLength+1));
-                System.out.println(x+col*p.sideLength);
-                System.out.println(y+row*p.sideLength); 
-                System.out.println(p);
+                p.imageView.setX(x+col*(p.sideLength+2));
+                p.imageView.setY(y+row*(p.sideLength+2));
                 root.getChildren().add(p.imageView);
             }
         }
