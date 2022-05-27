@@ -1,7 +1,7 @@
 /**
  * Main class for the WarLens game
  * 
- * @author Sean Yang, Vlad Surdu, Ana-Maria
+ * @author Sean Yang, Vlad Surdu
  * @version 2.0
  * @since 2022-05-19
  */
@@ -46,6 +46,7 @@ public class WarLens extends Application {
     /** 
      * This method loads a 2D array of size b and h with the
      * "redPixel.png" image
+     * Worked on by: Vlad, Sean
      * @param b number of columns
      * @param h number of rows
      */
@@ -63,6 +64,7 @@ public class WarLens extends Application {
     /** 
      * This method displays the array by adding the images to 
      * the root stack starting at the x and y coordinates
+     * Worked on by: Vlad
      * @param x x coordinate of where to start adding pictures
      * @param y y coordinate of where to start adding pictures
      * @param root root stack
@@ -83,6 +85,7 @@ public class WarLens extends Application {
     /** 
      * This method is an experimental method for collision checking
      * based on nearby colours
+     * Worked on by: Sean
      * @param x x coordinate of where to check
      * @param y y coordinate of where to check
      * @return boolean returns true if the player can move and false if they cannot (i.e. colour not detected, colour detected)
