@@ -9,7 +9,9 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -27,15 +29,16 @@ public class WarLens extends Application {
      * the root stack and setting scene/setting name/showing scene
      * @param splashStage main stage
      */
-    public void start(Stage splashStage){
+    public void start(Stage splashStage) throws IOException{
 
-        loadArr(100,100);
+        //loadArr(100,100);
 
         Group root = new Group();
         
-        displayArr(0,0,root);
+        //displayArr(0,0,root);
+        stressEffects(root);
 
-        Scene scene = new Scene(root,  640, 480);
+        Scene scene = new Scene(root,  300, 300);
         
         splashStage.setTitle("Map Test");
         splashStage.setScene(scene);
@@ -104,7 +107,20 @@ public class WarLens extends Application {
         }
     }
 
-    
+    public void stressEffects(Group root) throws IOException{
+        Image image = new Image("/test.png");
+        ImageView iv = new ImageView(image);
+        iv.setX(0.0);
+        iv.setY(0.0);
+        iv.setFitWidth(300.0);
+        iv.setFitHeight(300.0);
+        iv.setPreserveRatio(true);
+        
+        GaussianBlur gb = new GaussianBlur();
+        gb.setRadius(10);
+        iv.setEffect(gb);
+        root.getChildren().add(iv);
+    }
     /** 
      * Main Method that launches the application
      * @param args 
