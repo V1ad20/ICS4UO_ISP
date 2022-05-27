@@ -31,12 +31,13 @@ public class WarLens extends Application {
      */
     public void start(Stage splashStage) throws IOException{
 
+        Group root = new Group();
+
         //loadArr(100,100);
 
-        Group root = new Group();
-        
         //displayArr(0,0,root);
-        stressEffects(root);
+        
+        stressEffects(10, root);
 
         Scene scene = new Scene(root,  300, 300);
         
@@ -106,7 +107,7 @@ public class WarLens extends Application {
         }
     }
 
-    public void stressEffects(Group root) throws IOException{
+    public void stressEffects(int strength, Group root) throws IOException{
         Image image = new Image("/test.png"); //use test image for now change it later
         ImageView iv = new ImageView(image);
         iv.setX(0.0);
@@ -116,9 +117,18 @@ public class WarLens extends Application {
         iv.setPreserveRatio(true);
         
         GaussianBlur gb = new GaussianBlur();
-        gb.setRadius(10); //due to nature of gaussian blur, the radius controls the strength of the blur
+        gb.setRadius(strength); //due to nature of gaussian blur, the radius controls the strength of the blur
         iv.setEffect(gb);
         root.getChildren().add(iv);
+
+        Image vignette = new Image("/vignette.png"); //testing vignette image. Also testing for transparent backgrounds with PNG. Looks like it works?
+        ImageView vin = new ImageView(vignette);
+        vin.setX(0.0);
+        vin.setY(0.0);
+        vin.setFitWidth(300.0);
+        vin.setFitHeight(300.0);
+        vin.setPreserveRatio(false);
+        root.getChildren().add(vin);
     }
     /** 
      * Main Method that launches the application
