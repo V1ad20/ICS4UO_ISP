@@ -20,7 +20,6 @@ import javax.imageio.ImageIO;
 
 public class WarLens extends Application {
     PicturePixel[][] pictureArr;
-
     
     /** 
      * This method contains all of the graphics code and calls needed
@@ -36,7 +35,7 @@ public class WarLens extends Application {
         //loadArr(100,100);
 
         //displayArr(0,0,root);
-        
+
         stressEffects(10, root);
 
         Scene scene = new Scene(root,  300, 300);
@@ -107,6 +106,15 @@ public class WarLens extends Application {
         }
     }
 
+    
+    /** 
+     * This method is an experimental method to test two things for the stress mechanic
+     * of the game. Test 1: blur effect Test 2: transparent PNG images
+     * Worked on by: Sean
+     * @param strength sets the radius (i.e. strength) of the blur effect
+     * @param root root stack
+     * @throws IOException on image not found
+     */
     public void stressEffects(int strength, Group root) throws IOException{
         Image image = new Image("/test.png"); //use test image for now change it later
         ImageView iv = new ImageView(image);
@@ -129,6 +137,7 @@ public class WarLens extends Application {
         vin.setFitHeight(300.0);
         vin.setPreserveRatio(false);
         root.getChildren().add(vin);
+        //for vignetting maybe also blur it? maybe not
     }
     /** 
      * Main Method that launches the application
