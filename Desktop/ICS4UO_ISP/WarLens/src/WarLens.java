@@ -95,12 +95,11 @@ public class WarLens extends Application {
      * @throws IOException on image not found
      */
     public boolean collisionCheck(int x, int y) throws IOException{
-        //File file = new File("/src/test.png");
-        BufferedImage image = ImageIO.read(getClass().getResource("/test.png"));
+        BufferedImage image = ImageIO.read(getClass().getResource("/test.png")); //we need to use bufferedImage here since getRGB only works with bufferedImage
 
-        int check = image.getRGB(x, y);
+        int check = image.getRGB(x, y); //getRGB returns a really weird integer, have to fix this later
         System.out.println(check);
-        if(check == 000000000){
+        if(check == 000000000){ //fix this with getRGB if we're going to use colour picking
             return false;
         }else{
             return true;
@@ -108,7 +107,7 @@ public class WarLens extends Application {
     }
 
     public void stressEffects(Group root) throws IOException{
-        Image image = new Image("/test.png");
+        Image image = new Image("/test.png"); //use test image for now change it later
         ImageView iv = new ImageView(image);
         iv.setX(0.0);
         iv.setY(0.0);
@@ -117,7 +116,7 @@ public class WarLens extends Application {
         iv.setPreserveRatio(true);
         
         GaussianBlur gb = new GaussianBlur();
-        gb.setRadius(10);
+        gb.setRadius(10); //due to nature of gaussian blur, the radius controls the strength of the blur
         iv.setEffect(gb);
         root.getChildren().add(iv);
     }
