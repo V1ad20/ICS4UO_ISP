@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 
 public class WarLens extends Application {
     PicturePixel[][] pictureArr;
-    
+
     /** 
      * This method contains all of the graphics code and calls needed
      * to run the program correclty. At the moment, it contains the call
@@ -28,7 +28,23 @@ public class WarLens extends Application {
      * the root stack and setting scene/setting name/showing scene
      * @param splashStage main stage
      */
-    public void start(Stage splashStage) throws IOException{
+    public void start(Stage mainStage) throws IOException{
+
+        Group companyRoot = new Group();
+        Group gameLogoRoot = new Group();
+        Group mainMenu = new Group();
+
+
+
+
+
+
+
+
+
+
+
+
 
         Group root = new Group();
 
@@ -40,11 +56,14 @@ public class WarLens extends Application {
 
         Scene scene = new Scene(root,  300, 300);
         
-        splashStage.setTitle("Map Test");
-        splashStage.setScene(scene);
-        splashStage.show();
+        mainStage.setTitle("");
+        mainStage.setScene(scene);
+        mainStage.show();
     }
 
+    public void companyScene(Group group){
+        
+    }
     
     /** 
      * This method loads a 2D array of size b and h with the
