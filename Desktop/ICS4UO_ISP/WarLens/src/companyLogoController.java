@@ -15,11 +15,6 @@ public class companyLogoController implements Initializable {
     private ImageView scenebuilderLogo;
 
     public void initialize(URL url, ResourceBundle rb) {
-        AnimationTimer timer = new AnimationTimer(){
-            @Override
-            public void handle(long arg0){
-
-            }
-        }
+        
     }
 }

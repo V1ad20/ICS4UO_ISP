@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="companyLogoController">
    <children>
-      <Arc fx:id="arc" fill="#ffffff0e" layoutX="499.0" layoutY="213.0" length="360.0" radiusX="152.0" radiusY="148.0" scaleX="1.2" scaleY="1.2" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeWidth="8.0">
+      <Arc fx:id="arc" fill="#ffffff0e" layoutX="499.0" layoutY="213.0" radiusX="172.0" radiusY="170.0" startAngle="-98.7" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeWidth="8.0">
          <stroke>
             <RadialGradient centerX="0.721402161235739" centerY="0.6088327955372326" cycleMethod="REPEAT" focusAngle="139.01" focusDistance="-0.5190839985854754" radius="1.0">
                <stops>

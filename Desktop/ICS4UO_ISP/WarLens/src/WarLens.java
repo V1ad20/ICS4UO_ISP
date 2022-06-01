@@ -6,6 +6,7 @@
  * @since 2022-05-19
  */
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -33,8 +35,20 @@ public class WarLens extends Application {
     public void start(Stage mainStage) throws IOException{
 
         Parent companyRoot = FXMLLoader.load(getClass().getResource("companyLogo.fxml"));
-
         Scene companyScene = new Scene(companyRoot, 1000,600);
+        Arc arc = (Arc) companyScene.lookup("#arc");
+
+        AnimationTimer timer = new AnimationTimer(){
+            @Override
+            public void handle(long arg0){
+                if (arc.getLength()<360)
+                 arc.setLength(arc.getLength()+3);
+                else
+                 this.stop();
+            }
+        };
+
+        timer.start();
         mainStage.setScene(companyScene);
         mainStage.show();
         // Group gameLogoRoot = new Group();
