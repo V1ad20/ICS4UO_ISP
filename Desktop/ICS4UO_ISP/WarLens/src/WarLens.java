@@ -47,7 +47,6 @@ public class WarLens extends Application {
                  this.stop();
             }
         };
-
         timer.start();
         mainStage.setScene(companyScene);
         mainStage.show();
