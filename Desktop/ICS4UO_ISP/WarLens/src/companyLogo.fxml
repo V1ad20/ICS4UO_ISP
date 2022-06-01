@@ -10,12 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EEE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="277.0" fitWidth="288.0" layoutX="355.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Company%20Logo.png" />
-         </image>
-      </ImageView>
-      <Arc fill="#ffffff0e" layoutX="499.0" layoutY="213.0" length="360.0" radiusX="152.0" radiusY="148.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeWidth="8.0">
+      <Arc fx:id="arc" fill="#ffffff0e" layoutX="499.0" layoutY="213.0" length="360.0" radiusX="152.0" radiusY="148.0" scaleX="1.2" scaleY="1.2" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" strokeWidth="8.0">
          <stroke>
             <RadialGradient centerX="0.721402161235739" centerY="0.6088327955372326" cycleMethod="REPEAT" focusAngle="139.01" focusDistance="-0.5190839985854754" radius="1.0">
                <stops>
@@ -38,14 +33,24 @@
             </RadialGradient>
          </stroke>
       </Arc>
-      <ImageView fitHeight="89.0" fitWidth="241.0" layoutX="393.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="277.0" fitWidth="288.0" layoutX="355.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
+         <image>
+            <Image url="@Company%20Logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="89.0" fitWidth="241.0" layoutX="311.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@JavaFX_Logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="305.0" fitWidth="464.0" layoutX="268.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="305.0" fitWidth="464.0" layoutX="264.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
          <image>
             <Image url="@textwrapimg.png" />
          </image></ImageView>
+      <ImageView fitHeight="89.0" fitWidth="95.0" layoutX="598.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@SceneBuilderLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
