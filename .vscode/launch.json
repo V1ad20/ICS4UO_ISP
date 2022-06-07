@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch WarLens",
+            "request": "launch",
+            "mainClass": "WarLens",
+            "projectName": "ICS4UO_ISP_d3777fdd"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
