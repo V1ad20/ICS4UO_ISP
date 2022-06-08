@@ -20,10 +20,11 @@ import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-import javax.imageio.ImageIO;
 import javafx.fxml.*;
 
 public class WarLens extends Application {
@@ -39,7 +40,9 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        splashScreen(mainStage);
+        //splashScreen(mainStage);
+
+        scene2(mainStage);
 
         // Group gameLogoRoot = new Group();
         // Group mainMenu = new Group();
@@ -57,10 +60,6 @@ public class WarLens extends Application {
         // mainStage.setTitle("");
         // mainStage.setScene(scene);
         // mainStage.show();
-    }
-
-    public void companyScene(Group group) {
-
     }
 
     public void fadeIn(Parent root, int time) {
@@ -116,10 +115,36 @@ public class WarLens extends Application {
         stage.setScene(companyScene);
         stage.show();
     }
-    
-    public void mainMenu(Stage stage) throws IOException{
+
+    public void scene2(Stage stage) throws IOException{
+        Group root = new Group();
+        Scene scene2 = new Scene(root, 640, 640);
+
+        ArrayList<String> text = new ArrayList<String>();
+
+        Scanner sc = new Scanner(new File("scene2Text.txt"));
+
+        while(sc.hasNextLine()){
+            text.add(sc.nextLine());
+        }
+        sc.close();
         
+        AnimationTimer timer = new AnimationTimer() {
+
+            @Override
+            public void handle(long arg0) {
+                for(int i = 0; i < text.size(); i++){
+                    System.out.println(text.get(i));
+                }
+                this.stop();
+            }
+            
+        };
+        timer.start();
+        stage.setScene(scene2);
+        stage.show();
     }
+
     /**
      * This method loads a 2D array of size b and h with the
      * "redPixel.png" image
@@ -159,30 +184,7 @@ public class WarLens extends Application {
 
     }
 
-    /**
-     * This method is an experimental method for collision checking
-     * based on nearby colours
-     * Worked on by: Sean
-     * 
-     * @param x x coordinate of where to check
-     * @param y y coordinate of where to check
-     * @return boolean returns true if the player can move and false if they cannot
-     *         (i.e. colour not detected, colour detected)
-     * @throws IOException on image not found
-     */
-    public boolean collisionCheck(int x, int y) throws IOException {
-        BufferedImage image = ImageIO.read(getClass().getResource("/test.png")); // we need to use bufferedImage here
-                                                                                 // since getRGB only works with
-                                                                                 // bufferedImage
-
-        int check = image.getRGB(x, y); // getRGB returns a really weird integer, have to fix this later
-        System.out.println(check);
-        if (check == 000000000) { // fix this with getRGB if we're going to use colour picking
-            return false;
-        } else {
-            return true;
-        }
-    }
+   
 
     /**
      * This method is an experimental method to test two things for the stress
@@ -228,4 +230,29 @@ public class WarLens extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+     // /**
+    //  * This method is an experimental method for collision checking
+    //  * based on nearby colours
+    //  * Worked on by: Sean
+    //  * 
+    //  * @param x x coordinate of where to check
+    //  * @param y y coordinate of where to check
+    //  * @return boolean returns true if the player can move and false if they cannot
+    //  *         (i.e. colour not detected, colour detected)
+    //  * @throws IOException on image not found
+    //  */
+    // public boolean collisionCheck(int x, int y) throws IOException {
+    //     BufferedImage image = ImageIO.read(getClass().getResource("/test.png")); // we need to use bufferedImage here
+    //                                                                              // since getRGB only works with
+    //                                                                              // bufferedImage
+
+    //     int check = image.getRGB(x, y); // getRGB returns a really weird integer, have to fix this later
+    //     System.out.println(check);
+    //     if (check == 000000000) { // fix this with getRGB if we're going to use colour picking
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 }
