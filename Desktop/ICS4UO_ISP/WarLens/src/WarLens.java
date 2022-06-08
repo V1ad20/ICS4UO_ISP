@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.*;
 import javafx.scene.text.TextAlignment;
@@ -154,7 +155,7 @@ public class WarLens extends Application {
         text.setFont(Font.font("Helvetica", 18));
         text.setWrappingWidth(600);
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setFill(Color.WHITE);
+        text.setFill(Color.LIGHTGREEN);
         root.getChildren().add(text);
 
         AnimationTimer timer = new AnimationTimer() {
@@ -164,15 +165,14 @@ public class WarLens extends Application {
 
                 int milis = (int) (nanos / 1000000);
                 curTime = (int) Math.floor(0.03 * milis);
-                if (checkTime != curTime) {
-                    // System.out.print();
+                if (disInt == currentString.length()) {
+                    this.stop();
+                } else if (checkTime != curTime) {
                     text.setText(currentString.substring(0, disInt + 1));
                     checkTime = curTime;
                     disInt++;
                 }
-                if (disInt == currentString.length()) {
-                    this.stop();
-                }
+
             }
 
         };
