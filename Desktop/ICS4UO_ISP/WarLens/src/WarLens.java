@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.scene.text.*;
@@ -48,7 +49,7 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        //splashScreen(mainStage);
+        // splashScreen(mainStage);
 
         scene2(mainStage);
 
@@ -124,43 +125,56 @@ public class WarLens extends Application {
         stage.show();
     }
 
-    public void scene2(Stage stage) throws IOException{
+    public void scene2(Stage stage) throws IOException {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
 
-        ArrayList<String> text = new ArrayList<String>();
+        ArrayList<String> textCache = new ArrayList<String>();
 
         Scanner sc = new Scanner(new File("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt"));
 
-        while(sc.hasNext()){
-            text.add(sc.nextLine());
+        while (sc.hasNext()) {
+            textCache.add(sc.nextLine());
         }
         sc.close();
-        
-        currentString = text.get(0);
-        
+
+        currentString = textCache.get(0);
+
+        Image image = new Image("textBox.png");
+
+        ImageView textBox = new ImageView(image);
+
+        textBox.setX(0);
+        textBox.setY(506);
+        root.getChildren().addAll(textBox);
+
+        Text text = new Text();
+        text.setX(20);
+        text.setY(540);
+        text.setFont(Font.font("Helvetica", 15.0));
+        text.setWrappingWidth(590);
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setFill(Color.WHITE);
+        root.getChildren().add(text);
+
         AnimationTimer timer = new AnimationTimer() {
 
             @Override
             public void handle(long nanos) {
-                
-                int milis = (int) (nanos/1000000);
-                curTime = (int) Math.floor(0.03*milis);
-                if(checkTime != curTime){
-                    //System.out.print();
-                    Text text = new Text(20, 540, currentString.substring(0, disInt + 1));
-                    text.setFont(Font.font("Helvetica", 15.0));
-                    text.setWrappingWidth(590);
-                    text.setTextAlignment(TextAlignment.LEFT);
-                    root.getChildren().add(text);
+
+                int milis = (int) (nanos / 1000000);
+                curTime = (int) Math.floor(0.03 * milis);
+                if (checkTime != curTime) {
+                    // System.out.print();
+                    text.setText(currentString.substring(0, disInt + 1));
                     checkTime = curTime;
                     disInt++;
                 }
-                if(disInt == currentString.length()){
+                if (disInt == currentString.length()) {
                     this.stop();
                 }
             }
-            
+
         };
         timer.start();
         stage.setScene(scene2);
@@ -205,8 +219,6 @@ public class WarLens extends Application {
         }
 
     }
-
-   
 
     /**
      * This method is an experimental method to test two things for the stress
@@ -253,28 +265,32 @@ public class WarLens extends Application {
         launch(args);
     }
 
-     // /**
-    //  * This method is an experimental method for collision checking
-    //  * based on nearby colours
-    //  * Worked on by: Sean
-    //  * 
-    //  * @param x x coordinate of where to check
-    //  * @param y y coordinate of where to check
-    //  * @return boolean returns true if the player can move and false if they cannot
-    //  *         (i.e. colour not detected, colour detected)
-    //  * @throws IOException on image not found
-    //  */
+    // /**
+    // * This method is an experimental method for collision checking
+    // * based on nearby colours
+    // * Worked on by: Sean
+    // *
+    // * @param x x coordinate of where to check
+    // * @param y y coordinate of where to check
+    // * @return boolean returns true if the player can move and false if they
+    // cannot
+    // * (i.e. colour not detected, colour detected)
+    // * @throws IOException on image not found
+    // */
     // public boolean collisionCheck(int x, int y) throws IOException {
-    //     BufferedImage image = ImageIO.read(getClass().getResource("/test.png")); // we need to use bufferedImage here
-    //                                                                              // since getRGB only works with
-    //                                                                              // bufferedImage
+    // BufferedImage image = ImageIO.read(getClass().getResource("/test.png")); //
+    // we need to use bufferedImage here
+    // // since getRGB only works with
+    // // bufferedImage
 
-    //     int check = image.getRGB(x, y); // getRGB returns a really weird integer, have to fix this later
-    //     System.out.println(check);
-    //     if (check == 000000000) { // fix this with getRGB if we're going to use colour picking
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
+    // int check = image.getRGB(x, y); // getRGB returns a really weird integer,
+    // have to fix this later
+    // System.out.println(check);
+    // if (check == 000000000) { // fix this with getRGB if we're going to use
+    // colour picking
+    // return false;
+    // } else {
+    // return true;
+    // }
     // }
 }
