@@ -150,9 +150,9 @@ public class WarLens extends Application {
 
         Text text = new Text();
         text.setX(20);
-        text.setY(540);
-        text.setFont(Font.font("Helvetica", 15.0));
-        text.setWrappingWidth(590);
+        text.setY(570);
+        text.setFont(Font.font("Helvetica", 18));
+        text.setWrappingWidth(600);
         text.setTextAlignment(TextAlignment.CENTER);
         text.setFill(Color.WHITE);
         root.getChildren().add(text);
