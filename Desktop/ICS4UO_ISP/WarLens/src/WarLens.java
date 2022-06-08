@@ -7,7 +7,6 @@
  * @since 2022-05-19
  */
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -15,11 +14,12 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.effect.Light.Distant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Arc;
-import javafx.scene.text.Text;
+import javafx.scene.text.Font;
+import javafx.scene.text.*;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -136,8 +136,7 @@ public class WarLens extends Application {
             text.add(sc.nextLine());
         }
         sc.close();
-
-       
+        
         currentString = text.get(0);
         
         AnimationTimer timer = new AnimationTimer() {
@@ -149,7 +148,10 @@ public class WarLens extends Application {
                 curTime = (int) Math.floor(0.03*milis);
                 if(checkTime != curTime){
                     //System.out.print();
-                    Text text = new Text(10, 320, currentString.substring(0, disInt + 1));
+                    Text text = new Text(20, 540, currentString.substring(0, disInt + 1));
+                    text.setFont(Font.font("Helvetica", 15.0));
+                    text.setWrappingWidth(590);
+                    text.setTextAlignment(TextAlignment.LEFT);
                     root.getChildren().add(text);
                     checkTime = curTime;
                     disInt++;
