@@ -7,6 +7,7 @@
  * @since 2022-05-19
  */
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -14,9 +15,11 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Light.Distant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Arc;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -29,6 +32,11 @@ import javafx.fxml.*;
 
 public class WarLens extends Application {
     PicturePixel[][] pictureArr;
+
+    int checkTime = 0;
+    int curTime = 0;
+    int disInt = 0;
+    String currentString = "";
 
     /**
      * This method contains all of the graphics code and calls needed
@@ -122,21 +130,33 @@ public class WarLens extends Application {
 
         ArrayList<String> text = new ArrayList<String>();
 
-        Scanner sc = new Scanner(new File("scene2Text.txt"));
+        Scanner sc = new Scanner(new File("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt"));
 
-        while(sc.hasNextLine()){
+        while(sc.hasNext()){
             text.add(sc.nextLine());
         }
         sc.close();
+
+       
+        currentString = text.get(0);
         
         AnimationTimer timer = new AnimationTimer() {
 
             @Override
-            public void handle(long arg0) {
-                for(int i = 0; i < text.size(); i++){
-                    System.out.println(text.get(i));
+            public void handle(long nanos) {
+                
+                int milis = (int) (nanos/1000000);
+                curTime = (int) Math.floor(0.03*milis);
+                if(checkTime != curTime){
+                    //System.out.print();
+                    Text text = new Text(10, 320, currentString.substring(0, disInt + 1));
+                    root.getChildren().add(text);
+                    checkTime = curTime;
+                    disInt++;
                 }
-                this.stop();
+                if(disInt == currentString.length()){
+                    this.stop();
+                }
             }
             
         };
