@@ -210,21 +210,21 @@ public class WarLens extends Application {
         //A. Correct B. Incorrect C. Incorrect
         //Stage 1:
         Button button1 = new Button("Correct");
-        button1.setLayoutX(200);
+        button1.setLayoutX(180);
         button1.setLayoutY(600);
         button1.setScaleX(1.5);
         button1.setScaleY(1.5);
         button1.setVisible(true);
 
         Button button2 = new Button("Incorrect");
-        button2.setLayoutX(320);
+        button2.setLayoutX(300);
         button2.setLayoutY(600);
         button2.setScaleX(1.5);
         button2.setScaleY(1.5);
         button2.setVisible(true);
 
         Button button3 = new Button("Incorrect");
-        button3.setLayoutX(400);
+        button3.setLayoutX(430);
         button3.setLayoutY(600);
         button3.setScaleX(1.5);
         button3.setScaleY(1.5);
