@@ -9,6 +9,7 @@
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -133,7 +134,33 @@ public class WarLens extends Application {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
 
-        textTool("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt", root, scene2);
+        Image character = new Image("testChar.png");
+        ImageView testChar = new ImageView(character);
+
+        testChar.setX(-10);
+        testChar.setY(400);
+        testChar.setPreserveRatio(true);
+        testChar.setScaleX(1);
+        testChar.setScaleY(1);
+
+        GaussianBlur blur = new GaussianBlur();
+        blur.setRadius(2);
+        testChar.setEffect(blur);
+        
+        root.getChildren().add(testChar);
+
+        TranslateTransition charMove = new TranslateTransition();
+        charMove.setDuration(Duration.millis(3000));
+        charMove.setNode(testChar);
+        charMove.setByX(300);
+        charMove.setCycleCount(1);
+        charMove.setAutoReverse(false);
+        charMove.play();
+
+        
+        
+
+        //textTool("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt", root, scene2);
 
         stage.setScene(scene2);
         stage.show();
