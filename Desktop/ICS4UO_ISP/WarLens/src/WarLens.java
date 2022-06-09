@@ -150,14 +150,13 @@ public class WarLens extends Application {
         root.getChildren().add(testChar);
 
         TranslateTransition charMove = new TranslateTransition();
-        charMove.setDuration(Duration.millis(3000));
+        charMove.setDuration(Duration.millis(5000));
         charMove.setNode(testChar);
         charMove.setByX(300);
+        charMove.setByY(200);
         charMove.setCycleCount(1);
         charMove.setAutoReverse(false);
         charMove.play();
-
-        
         
 
         //textTool("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt", root, scene2);
