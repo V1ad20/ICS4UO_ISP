@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -192,7 +193,6 @@ public class WarLens extends Application {
             public void handle(KeyEvent event) {
                 if (curIndex == textCache.size()) {
                     text.setVisible(false);
-                    textBox.setVisible(false);
                     arrow.setVisible(false);
                     keyEventActive = false;
                     timer.stop();
@@ -205,6 +205,35 @@ public class WarLens extends Application {
                 }
             }
         });
+
+        //Asking questions
+        //A. Correct B. Incorrect C. Incorrect
+        //Stage 1:
+        Button button1 = new Button("Correct");
+        button1.setLayoutX(200);
+        button1.setLayoutY(600);
+        button1.setScaleX(1.5);
+        button1.setScaleY(1.5);
+        button1.setVisible(true);
+
+        Button button2 = new Button("Incorrect");
+        button2.setLayoutX(320);
+        button2.setLayoutY(600);
+        button2.setScaleX(1.5);
+        button2.setScaleY(1.5);
+        button2.setVisible(true);
+
+        Button button3 = new Button("Incorrect");
+        button3.setLayoutX(400);
+        button3.setLayoutY(600);
+        button3.setScaleX(1.5);
+        button3.setScaleY(1.5);
+        button3.setVisible(true);
+
+        root.getChildren().add(button1);
+        root.getChildren().add(button2);
+        root.getChildren().add(button3);
+
         timer.start();
         stage.setScene(scene2);
         stage.show();
