@@ -38,7 +38,9 @@ public class WarLens extends Application {
     int checkTime = 0;
     int curTime = 0;
     int disInt = 0;
+    int curIndex = 0;
     String currentString = "";
+    boolean keyEventActive = false;
 
     /**
      * This method contains all of the graphics code and calls needed
@@ -139,7 +141,7 @@ public class WarLens extends Application {
         }
         sc.close();
 
-        currentString = textCache.get(0);
+        currentString = textCache.get(curIndex);
 
         Image textBoxImage = new Image("textBox.png");
         ImageView textBox = new ImageView(textBoxImage);
@@ -150,10 +152,10 @@ public class WarLens extends Application {
         Text text = new Text();
         text.setX(20);
         text.setY(570);
-        text.setFont(Font.font("Helvetica", 18));
+        text.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
         text.setWrappingWidth(600);
         text.setTextAlignment(TextAlignment.CENTER);
-        text.setFill(Color.LIGHTGREEN);
+        text.setFill(Color.WHITE);
         root.getChildren().add(text);
 
         Image arrowImage = new Image("arrow.png");
@@ -174,6 +176,8 @@ public class WarLens extends Application {
                 curTime = (int) Math.floor(0.03 * milis);
                 if (disInt == currentString.length()) {
                     arrow.setVisible(true);
+                    curIndex++;
+                    keyEventActive = true;
                     this.stop();
                 } else if (checkTime != curTime) {
                     text.setText(currentString.substring(0, disInt + 1));
@@ -186,11 +190,18 @@ public class WarLens extends Application {
         scene2.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(disInt == currentString.length()){
-                    currentString = textCache.get(1);
+                if (curIndex == textCache.size()) {
+                    text.setVisible(false);
+                    textBox.setVisible(false);
+                    arrow.setVisible(false);
+                    keyEventActive = false;
+                    timer.stop();
+                } else if (keyEventActive) {
+                    currentString = textCache.get(curIndex);
                     disInt = 0;
                     arrow.setVisible(false);
                     timer.start();
+                    keyEventActive = false;
                 }
             }
         });
