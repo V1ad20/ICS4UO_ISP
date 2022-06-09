@@ -1,1 +1,2 @@
 Will this be on your mind in a year, or even a month? What can I do about it right now?
+timer.start();

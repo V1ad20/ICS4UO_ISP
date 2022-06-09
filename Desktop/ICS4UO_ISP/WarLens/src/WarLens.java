@@ -10,15 +10,17 @@
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Light.Distant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.*;
 import javafx.scene.text.TextAlignment;
@@ -29,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
 
 import javafx.fxml.*;
 
@@ -141,10 +144,8 @@ public class WarLens extends Application {
 
         currentString = textCache.get(0);
 
-        Image image = new Image("textBox.png");
-
-        ImageView textBox = new ImageView(image);
-
+        Image textBoxImage = new Image("textBox.png");
+        ImageView textBox = new ImageView(textBoxImage);
         textBox.setX(0);
         textBox.setY(506);
         root.getChildren().addAll(textBox);
@@ -158,24 +159,44 @@ public class WarLens extends Application {
         text.setFill(Color.LIGHTGREEN);
         root.getChildren().add(text);
 
+        Image arrowImage = new Image("arrow.png");
+        ImageView arrow = new ImageView(arrowImage);
+        arrow.setX(590);
+        arrow.setY(605);
+        arrow.setPreserveRatio(true);
+        arrow.setFitHeight(28);
+        arrow.setFitWidth(28);
+        arrow.setVisible(false);
+        root.getChildren().add(arrow);
+
         AnimationTimer timer = new AnimationTimer() {
 
             @Override
             public void handle(long nanos) {
-
                 int milis = (int) (nanos / 1000000);
                 curTime = (int) Math.floor(0.03 * milis);
                 if (disInt == currentString.length()) {
+                    arrow.setVisible(true);
                     this.stop();
                 } else if (checkTime != curTime) {
                     text.setText(currentString.substring(0, disInt + 1));
                     checkTime = curTime;
                     disInt++;
                 }
-
             }
-
         };
+
+        scene2.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(disInt == currentString.length()){
+                    currentString = textCache.get(1);
+                    disInt = 0;
+                    arrow.setVisible(false);
+                    timer.start();
+                }
+            }
+        });
         timer.start();
         stage.setScene(scene2);
         stage.show();
