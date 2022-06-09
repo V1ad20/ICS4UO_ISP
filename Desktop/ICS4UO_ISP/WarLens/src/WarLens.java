@@ -133,9 +133,17 @@ public class WarLens extends Application {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
 
+        textTool("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt", root, scene2);
+
+        stage.setScene(scene2);
+        stage.show();
+    }
+
+    public void textTool(String filepath, Group root, Scene scene) throws IOException {
+
         ArrayList<String> textCache = new ArrayList<String>();
 
-        Scanner sc = new Scanner(new File("Desktop/ICS4UO_ISP/WarLens/src/scene2Text.txt"));
+        Scanner sc = new Scanner(new File(filepath));
 
         while (sc.hasNext()) {
             textCache.add(sc.nextLine());
@@ -169,9 +177,9 @@ public class WarLens extends Application {
         arrow.setVisible(false);
         root.getChildren().add(arrow);
 
-        //Asking questions
-        //A. Correct B. Incorrect C. Incorrect
-        //Stage 1:
+        // Asking questions
+        // A. Correct B. Incorrect C. Incorrect
+        // Stage 1:
         Text question = new Text();
         question.setText("When stressed, Gleb should:");
         question.setX(20);
@@ -182,7 +190,7 @@ public class WarLens extends Application {
         question.setFill(Color.WHITE);
         question.setVisible(false);
         root.getChildren().add(question);
-        
+
         Button button1 = new Button("Correct");
         button1.setLayoutX(180);
         button1.setLayoutY(600);
@@ -227,7 +235,7 @@ public class WarLens extends Application {
             }
         };
 
-        scene2.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (curIndex == textCache.size()) {
@@ -250,8 +258,6 @@ public class WarLens extends Application {
         });
 
         timer.start();
-        stage.setScene(scene2);
-        stage.show();
     }
 
     /**
