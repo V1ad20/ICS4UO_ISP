@@ -134,7 +134,7 @@ public class WarLens extends Application {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
 
-        Image character = new Image("testChar.png");
+        Image character = new Image("resources/testChar.png");
         ImageView testChar = new ImageView(character);
 
         testChar.setX(-10);
