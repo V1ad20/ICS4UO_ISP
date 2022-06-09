@@ -169,6 +169,45 @@ public class WarLens extends Application {
         arrow.setVisible(false);
         root.getChildren().add(arrow);
 
+        //Asking questions
+        //A. Correct B. Incorrect C. Incorrect
+        //Stage 1:
+        Text question = new Text();
+        question.setText("When stressed, Gleb should:");
+        question.setX(20);
+        question.setY(570);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        question.setVisible(false);
+        root.getChildren().add(question);
+        
+        Button button1 = new Button("Correct");
+        button1.setLayoutX(180);
+        button1.setLayoutY(600);
+        button1.setScaleX(1.5);
+        button1.setScaleY(1.5);
+        button1.setVisible(false);
+
+        Button button2 = new Button("Incorrect");
+        button2.setLayoutX(300);
+        button2.setLayoutY(600);
+        button2.setScaleX(1.5);
+        button2.setScaleY(1.5);
+        button2.setVisible(false);
+
+        Button button3 = new Button("Incorrect");
+        button3.setLayoutX(430);
+        button3.setLayoutY(600);
+        button3.setScaleX(1.5);
+        button3.setScaleY(1.5);
+        button3.setVisible(false);
+
+        root.getChildren().add(button1);
+        root.getChildren().add(button2);
+        root.getChildren().add(button3);
+
         AnimationTimer timer = new AnimationTimer() {
 
             @Override
@@ -196,6 +235,10 @@ public class WarLens extends Application {
                     arrow.setVisible(false);
                     keyEventActive = false;
                     timer.stop();
+                    question.setVisible(true);
+                    button1.setVisible(true);
+                    button2.setVisible(true);
+                    button3.setVisible(true);
                 } else if (keyEventActive) {
                     currentString = textCache.get(curIndex);
                     disInt = 0;
@@ -205,34 +248,6 @@ public class WarLens extends Application {
                 }
             }
         });
-
-        //Asking questions
-        //A. Correct B. Incorrect C. Incorrect
-        //Stage 1:
-        Button button1 = new Button("Correct");
-        button1.setLayoutX(180);
-        button1.setLayoutY(600);
-        button1.setScaleX(1.5);
-        button1.setScaleY(1.5);
-        button1.setVisible(true);
-
-        Button button2 = new Button("Incorrect");
-        button2.setLayoutX(300);
-        button2.setLayoutY(600);
-        button2.setScaleX(1.5);
-        button2.setScaleY(1.5);
-        button2.setVisible(true);
-
-        Button button3 = new Button("Incorrect");
-        button3.setLayoutX(430);
-        button3.setLayoutY(600);
-        button3.setScaleX(1.5);
-        button3.setScaleY(1.5);
-        button3.setVisible(true);
-
-        root.getChildren().add(button1);
-        root.getChildren().add(button2);
-        root.getChildren().add(button3);
 
         timer.start();
         stage.setScene(scene2);
