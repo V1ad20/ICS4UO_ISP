@@ -332,10 +332,10 @@ public class WarLens extends Application {
                     keyEventActive = false;
                     animationLocked = false;
                     timer.stop();
-                    question.setVisible(true);
-                    button1.setVisible(true);
-                    button2.setVisible(true);
-                    button3.setVisible(true);
+                    //question.setVisible(true);
+                    //button1.setVisible(true);
+                    //button2.setVisible(true);
+                    //button3.setVisible(true);
                 } else if (keyEventActive) {
                     currentString = textCache.get(curIndex);
                     disInt = 0;
