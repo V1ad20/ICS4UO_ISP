@@ -60,7 +60,8 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        splashScreen(mainStage);
+        //splashScreen(mainStage);
+        scene2(mainStage);
     }
 
     public void fadeIn(Node root, int time) {
@@ -352,9 +353,11 @@ public class WarLens extends Application {
     }
 
     public void scene2Questions(Group root, Scene scene) {
-        Text text = new Text("Question");
+
+        //Question 1
+        Text text = new Text("When you are stressed, should you:");
         text.setX(20);
-        text.setY(570);
+        text.setY(550);
         text.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
         text.setWrappingWidth(600);
         text.setTextAlignment(TextAlignment.CENTER);
