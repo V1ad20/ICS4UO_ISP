@@ -56,8 +56,7 @@ public class WarLens extends Application {
     public void start(Stage mainStage) throws IOException {
 
         splashScreen(mainStage);
-
-        scene2(mainStage);
+        // scene2(mainStage);
 
         // Group gameLogoRoot = new Group();
         // Group mainMenu = new Group();
@@ -96,8 +95,8 @@ public class WarLens extends Application {
     }
 
     public void splashScreen(Stage stage) throws IOException {
-        Parent companyRoot = FXMLLoader.load(getClass().getResource("resources/companyLogo.fxml"));
-        Scene companyScene = new Scene(companyRoot, 1000, 600);
+        Parent companyRoot = FXMLLoader.load(getClass().getResource("resources/splashScreen/companyLogo.fxml"));
+        Scene companyScene = new Scene(companyRoot, 640, 640);
         Arc arc = (Arc) companyScene.lookup("#arc");
 
         fadeIn(companyRoot, 3000);
@@ -109,6 +108,10 @@ public class WarLens extends Application {
                     arc.setLength(arc.getLength() - 3);
                 } else {
                     this.stop();
+                    try {
+                        scene2(stage);
+                    } catch (IOException e) {
+                    }
                 }
             }
         };
