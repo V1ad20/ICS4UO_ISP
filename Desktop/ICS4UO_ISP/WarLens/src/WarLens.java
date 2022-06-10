@@ -36,9 +36,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.management.monitor.GaugeMonitor;
-
 import javafx.fxml.*;
 
 public class WarLens extends Application {
@@ -206,7 +203,7 @@ public class WarLens extends Application {
         returnedTest.setScaleY(3);
         returnedTest.setX(280);
         returnedTest.setY(210);
-        
+
         GaussianBlur gausBlur = new GaussianBlur();
         gausBlur.setRadius(15);
         returnedTest.setEffect(gausBlur);
@@ -215,7 +212,7 @@ public class WarLens extends Application {
 
         returnedTest.setVisible(false);
 
-        RotateTransition returnedTestRotate= new RotateTransition();
+        RotateTransition returnedTestRotate = new RotateTransition();
         returnedTestRotate.setAxis(Rotate.Z_AXIS);
         returnedTestRotate.setByAngle(360);
         returnedTestRotate.setDuration(Duration.millis(10000));
@@ -223,15 +220,20 @@ public class WarLens extends Application {
         returnedTestRotate.setAutoReverse(true);
         returnedTestRotate.setNode(returnedTest);
 
-        
+        FadeTransition returnedTestFade = new FadeTransition();
+        returnedTestFade.setDuration(Duration.millis(2000));
+        returnedTestFade.setNode(returnedTest);
+        returnedTestFade.setFromValue(0);
+        returnedTestFade.setToValue(1);
+
         AnimationTimer scene2Anim2 = new AnimationTimer() {
 
             @Override
             public void handle(long arg0) {
-                if(!animationLocked){
-                    scene2Questions();
+                if (!animationLocked) {
+                    scene2Questions(root, scene2);
                     this.stop();
-                }   
+                }
             }
         };
 
@@ -244,13 +246,12 @@ public class WarLens extends Application {
                         try {
                             textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart2.txt", root, scene2);
                             returnedTest.setVisible(true);
-                            returnedTestRotate.play();
-                            scene2Anim2.start();
+                            returnedTestFade.play();
                         } catch (IOException e) {
                             System.out.println("FATAL ERROR: file scene2TextPart2 - NOT FOUND");
-                        }  
+                        }
                     }
-                });            
+                });
             };
         };
 
@@ -259,6 +260,11 @@ public class WarLens extends Application {
             scene2.setFill(Color.BLACK);
             runningRightAnim.stop();
             timer.schedule(runTextPart2, 3000);
+        });
+
+        returnedTestFade.setOnFinished(event ->{
+            returnedTestRotate.play();
+            scene2Anim2.start();
         });
 
         stage.setScene(scene2);
@@ -350,10 +356,16 @@ public class WarLens extends Application {
         playText.start();
     }
 
-    public void scene2Questions(){
-
+    public void scene2Questions(Group root, Scene scene) {
+        Text text = new Text("Question");
+        text.setX(20);
+        text.setY(570);
+        text.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        text.setWrappingWidth(600);
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setFill(Color.WHITE);
+        root.getChildren().add(text);
     }
-
 
     /**
      * Main Method that launches the application
