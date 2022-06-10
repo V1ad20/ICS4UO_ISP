@@ -15,6 +15,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
@@ -62,7 +63,7 @@ public class WarLens extends Application {
         splashScreen(mainStage);
     }
 
-    public void fadeIn(Parent root, int time) {
+    public void fadeIn(Node root, int time) {
         FadeTransition ft = new FadeTransition();
         ft.setDuration(Duration.millis(time));
         ft.setNode(root);
@@ -71,7 +72,7 @@ public class WarLens extends Application {
         ft.play();
     }
 
-    public void fadeOut(Parent root, int time) {
+    public void fadeOut(Node root, int time) {
         FadeTransition ft = new FadeTransition();
         ft.setDuration(Duration.millis(time));
         ft.setNode(root);
@@ -215,22 +216,19 @@ public class WarLens extends Application {
         RotateTransition returnedTestRotate = new RotateTransition();
         returnedTestRotate.setAxis(Rotate.Z_AXIS);
         returnedTestRotate.setByAngle(360);
-        returnedTestRotate.setDuration(Duration.millis(10000));
+        returnedTestRotate.setDuration(Duration.millis(30000));
         returnedTestRotate.setCycleCount(99999);
-        returnedTestRotate.setAutoReverse(true);
+        returnedTestRotate.setAutoReverse(false);
         returnedTestRotate.setNode(returnedTest);
 
-        FadeTransition returnedTestFade = new FadeTransition();
-        returnedTestFade.setDuration(Duration.millis(2000));
-        returnedTestFade.setNode(returnedTest);
-        returnedTestFade.setFromValue(0);
-        returnedTestFade.setToValue(1);
+        
 
         AnimationTimer scene2Anim2 = new AnimationTimer() {
 
             @Override
             public void handle(long arg0) {
                 if (!animationLocked) {
+                    fadeOut(returnedTest, 2000);
                     scene2Questions(root, scene2);
                     this.stop();
                 }
@@ -246,7 +244,9 @@ public class WarLens extends Application {
                         try {
                             textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart2.txt", root, scene2);
                             returnedTest.setVisible(true);
-                            returnedTestFade.play();
+                            returnedTestRotate.play();
+                            fadeIn(returnedTest, 5000);
+                            scene2Anim2.start();
                         } catch (IOException e) {
                             System.out.println("FATAL ERROR: file scene2TextPart2 - NOT FOUND");
                         }
@@ -259,12 +259,7 @@ public class WarLens extends Application {
             vignette.setVisible(false);
             scene2.setFill(Color.BLACK);
             runningRightAnim.stop();
-            timer.schedule(runTextPart2, 3000);
-        });
-
-        returnedTestFade.setOnFinished(event ->{
-            returnedTestRotate.play();
-            scene2Anim2.start();
+            timer.schedule(runTextPart2, 1000);
         });
 
         stage.setScene(scene2);
