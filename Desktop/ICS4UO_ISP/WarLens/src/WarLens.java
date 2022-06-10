@@ -7,7 +7,6 @@
  * @since 2022-05-19
  */
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
