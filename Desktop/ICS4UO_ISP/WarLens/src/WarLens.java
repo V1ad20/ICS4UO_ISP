@@ -7,7 +7,6 @@
  * @since 2022-05-19
  */
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -37,12 +36,12 @@ import javafx.fxml.*;
 public class WarLens extends Application {
     PicturePixel[][] pictureArr;
 
-    int checkTime = 0;
-    int curTime = 0;
-    int disInt = 0;
-    int curIndex = 0;
-    String currentString = "";
-    boolean keyEventActive = false;
+    int checkTime;
+    int curTime;
+    int disInt;
+    int curIndex;
+    String currentString;
+    boolean keyEventActive;
 
     /**
      * This method contains all of the graphics code and calls needed
@@ -167,7 +166,7 @@ public class WarLens extends Application {
                 if (checkTime != curTime) {
                     testChar.setImage(rightMoveFrames.get(curIndex));
                     curIndex++;
-                    if(curIndex == rightMoveFrames.size()){
+                    if (curIndex == rightMoveFrames.size()) {
                         curIndex = 0;
                     }
                     checkTime = curTime;
@@ -180,12 +179,11 @@ public class WarLens extends Application {
         charMove.setDuration(Duration.millis(5000));
         charMove.setNode(testChar);
         charMove.setByX(300);
-        charMove.setByY(200);
         charMove.setCycleCount(1);
         charMove.setAutoReverse(false);
         charMove.play();
 
-        textTool("resources/scene2Text.txt", root, scene2);
+        textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root, scene2);
 
         stage.setScene(scene2);
         stage.show();
@@ -195,7 +193,7 @@ public class WarLens extends Application {
 
         ArrayList<String> textCache = new ArrayList<String>();
 
-        Scanner sc = new Scanner(new File("/scene2Text.txt"));
+        Scanner sc = new Scanner(new File(filepath));
 
         while (sc.hasNext()) {
             textCache.add(sc.nextLine());
@@ -267,6 +265,12 @@ public class WarLens extends Application {
         root.getChildren().add(button1);
         root.getChildren().add(button2);
         root.getChildren().add(button3);
+
+        checkTime = 0;
+        curTime = 0;
+        disInt = 0;
+        curIndex = 0;
+        keyEventActive = false;
 
         AnimationTimer timer = new AnimationTimer() {
 
