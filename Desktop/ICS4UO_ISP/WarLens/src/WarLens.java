@@ -156,8 +156,8 @@ public class WarLens extends Application {
         testChar.setScaleY(1.5);
         testChar.setEffect(new Glow(0.5));
 
-        vignette.setFitHeight(640);
         vignette.setFitWidth(640);
+        vignette.setFitHeight(506);
         vignette.setPreserveRatio(false);
         vignette.setEffect(new Glow(0.5));
 
@@ -208,6 +208,11 @@ public class WarLens extends Application {
             }
         };
         scene2Anim.start();
+
+        charMove.setOnFinished(event ->{
+            vignette.setVisible(false);
+            scene2.setFill(Color.BLACK);
+        });
 
         // textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root, scene2);
 
