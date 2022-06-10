@@ -7,6 +7,7 @@
  * @since 2022-05-19
  */
 
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -15,7 +16,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,6 +31,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.fxml.*;
 
@@ -56,24 +58,6 @@ public class WarLens extends Application {
     public void start(Stage mainStage) throws IOException {
 
         splashScreen(mainStage);
-        // scene2(mainStage);
-
-        // Group gameLogoRoot = new Group();
-        // Group mainMenu = new Group();
-
-        // Group root = new Group();
-
-        // //loadArr(100,100);
-
-        // //displayArr(0,0,root);
-
-        // stressEffects(10, root);
-
-        // Scene scene = new Scene(root, 300, 300);
-
-        // mainStage.setTitle("");
-        // mainStage.setScene(scene);
-        // mainStage.show();
     }
 
     public void fadeIn(Parent root, int time) {
@@ -137,6 +121,7 @@ public class WarLens extends Application {
     public void scene2(Stage stage) throws IOException {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
+        Timer timer = new Timer();
 
         textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart1.txt", root, scene2);
 
@@ -209,12 +194,23 @@ public class WarLens extends Application {
         };
         scene2Anim.start();
 
-        charMove.setOnFinished(event ->{
+        TimerTask runTextPart2 = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart2.txt", root, scene2);
+                } catch (IOException e) {
+                    System.out.println();
+                }
+            };
+        };
+
+        charMove.setOnFinished(event -> {
             vignette.setVisible(false);
             scene2.setFill(Color.BLACK);
+            runningRightAnim.stop();
+            timer.schedule(runTextPart2, 3000);
         });
-
-        // textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root, scene2);
 
         stage.setScene(scene2);
         stage.show();
@@ -223,6 +219,13 @@ public class WarLens extends Application {
     public void textTool(String filepath, Group root, Scene scene) throws IOException {
 
         ArrayList<String> textCache = new ArrayList<String>();
+
+        checkTime = 0;
+        curTime = 0;
+        disInt = 0;
+        curIndex = 0;
+        keyEventActive = false;
+        animationLocked = true;
 
         Scanner sc = new Scanner(new File(filepath));
 
@@ -258,53 +261,7 @@ public class WarLens extends Application {
         arrow.setVisible(false);
         root.getChildren().add(arrow);
 
-        // Asking questions
-        // A. Correct B. Incorrect C. Incorrect
-        // Stage 1:
-        Text question = new Text();
-        question.setText("When stressed, Gleb should:");
-        question.setX(20);
-        question.setY(570);
-        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
-        question.setWrappingWidth(600);
-        question.setTextAlignment(TextAlignment.CENTER);
-        question.setFill(Color.WHITE);
-        question.setVisible(false);
-        root.getChildren().add(question);
-
-        Button button1 = new Button("Correct");
-        button1.setLayoutX(180);
-        button1.setLayoutY(600);
-        button1.setScaleX(1.5);
-        button1.setScaleY(1.5);
-        button1.setVisible(false);
-
-        Button button2 = new Button("Incorrect");
-        button2.setLayoutX(300);
-        button2.setLayoutY(600);
-        button2.setScaleX(1.5);
-        button2.setScaleY(1.5);
-        button2.setVisible(false);
-
-        Button button3 = new Button("Incorrect");
-        button3.setLayoutX(430);
-        button3.setLayoutY(600);
-        button3.setScaleX(1.5);
-        button3.setScaleY(1.5);
-        button3.setVisible(false);
-
-        root.getChildren().add(button1);
-        root.getChildren().add(button2);
-        root.getChildren().add(button3);
-
-        checkTime = 0;
-        curTime = 0;
-        disInt = 0;
-        curIndex = 0;
-        keyEventActive = false;
-        animationLocked = true;
-
-        AnimationTimer timer = new AnimationTimer() {
+        AnimationTimer playText = new AnimationTimer() {
 
             @Override
             public void handle(long nanos) {
@@ -331,22 +288,17 @@ public class WarLens extends Application {
                     arrow.setVisible(false);
                     keyEventActive = false;
                     animationLocked = false;
-                    timer.stop();
-                    //question.setVisible(true);
-                    //button1.setVisible(true);
-                    //button2.setVisible(true);
-                    //button3.setVisible(true);
+                    playText.stop();
                 } else if (keyEventActive) {
                     currentString = textCache.get(curIndex);
                     disInt = 0;
                     arrow.setVisible(false);
-                    timer.start();
                     keyEventActive = false;
+                    playText.start();
                 }
             }
         });
-
-        timer.start();
+        playText.start();
     }
 
     /**
