@@ -144,8 +144,10 @@ public class WarLens extends Application {
         Image frame2 = new Image("resources/characters/mainCharacter/frame2.png");
         Image frame3 = new Image("resources/characters/mainCharacter/frame3.png");
         Image frame4 = new Image("resources/characters/mainCharacter/frame4.png");
+        Image vignetteImage = new Image("resources/vignette.png");
 
         ImageView testChar = new ImageView();
+        ImageView vignette = new ImageView(vignetteImage);
 
         testChar.setX(-10);
         testChar.setY(400);
@@ -154,7 +156,13 @@ public class WarLens extends Application {
         testChar.setScaleY(1.5);
         testChar.setEffect(new Glow(0.5));
 
+        vignette.setFitHeight(640);
+        vignette.setFitWidth(640);
+        vignette.setPreserveRatio(false);
+        vignette.setEffect(new Glow(0.5));
+
         root.getChildren().add(testChar);
+        root.getChildren().add(vignette);
 
         ArrayList<Image> rightMoveFrames = new ArrayList<Image>();
         rightMoveFrames.add(frame1);
@@ -201,8 +209,7 @@ public class WarLens extends Application {
         };
         scene2Anim.start();
 
-        // textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root,
-        // scene2);
+        // textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root, scene2);
 
         stage.setScene(scene2);
         stage.show();
