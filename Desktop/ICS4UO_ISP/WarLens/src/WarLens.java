@@ -9,12 +9,15 @@
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +27,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.scene.text.*;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
@@ -32,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.management.monitor.GaugeMonitor;
 
 import javafx.fxml.*;
 
@@ -177,7 +183,7 @@ public class WarLens extends Application {
         charMove.setCycleCount(1);
         charMove.setAutoReverse(false);
 
-        AnimationTimer scene2Anim = new AnimationTimer() {
+        AnimationTimer scene2Anim1 = new AnimationTimer() {
 
             @Override
             public void handle(long arg0) {
@@ -191,16 +197,60 @@ public class WarLens extends Application {
                 }
             }
         };
-        scene2Anim.start();
+        scene2Anim1.start();
+
+        Image returnedTestImage = new Image("resources/returnedTest.png");
+        ImageView returnedTest = new ImageView(returnedTestImage);
+        returnedTest.setPreserveRatio(true);
+        returnedTest.setScaleX(3);
+        returnedTest.setScaleY(3);
+        returnedTest.setX(280);
+        returnedTest.setY(210);
+        
+        GaussianBlur gausBlur = new GaussianBlur();
+        gausBlur.setRadius(15);
+        returnedTest.setEffect(gausBlur);
+
+        root.getChildren().add(returnedTest);
+
+        returnedTest.setVisible(false);
+
+        RotateTransition returnedTestRotate= new RotateTransition();
+        returnedTestRotate.setAxis(Rotate.Z_AXIS);
+        returnedTestRotate.setByAngle(360);
+        returnedTestRotate.setDuration(Duration.millis(10000));
+        returnedTestRotate.setCycleCount(99999);
+        returnedTestRotate.setAutoReverse(true);
+        returnedTestRotate.setNode(returnedTest);
+
+        
+        AnimationTimer scene2Anim2 = new AnimationTimer() {
+
+            @Override
+            public void handle(long arg0) {
+                if(!animationLocked){
+                    scene2Questions();
+                    this.stop();
+                }   
+            }
+        };
 
         TimerTask runTextPart2 = new TimerTask() {
             @Override
             public void run() {
-                try {
-                    textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart2.txt", root, scene2);
-                } catch (IOException e) {
-                    System.out.println();
-                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart2.txt", root, scene2);
+                            returnedTest.setVisible(true);
+                            returnedTestRotate.play();
+                            scene2Anim2.start();
+                        } catch (IOException e) {
+                            System.out.println("FATAL ERROR: file scene2TextPart2 - NOT FOUND");
+                        }  
+                    }
+                });            
             };
         };
 
@@ -239,7 +289,7 @@ public class WarLens extends Application {
         ImageView textBox = new ImageView(textBoxImage);
         textBox.setX(0);
         textBox.setY(506);
-        root.getChildren().addAll(textBox);
+        root.getChildren().add(textBox);
 
         Text text = new Text();
         text.setX(20);
@@ -299,6 +349,11 @@ public class WarLens extends Application {
         });
         playText.start();
     }
+
+    public void scene2Questions(){
+
+    }
+
 
     /**
      * Main Method that launches the application
