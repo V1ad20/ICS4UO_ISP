@@ -55,7 +55,7 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        // splashScreen(mainStage);
+        splashScreen(mainStage);
 
         scene2(mainStage);
 
@@ -96,7 +96,7 @@ public class WarLens extends Application {
     }
 
     public void splashScreen(Stage stage) throws IOException {
-        Parent companyRoot = FXMLLoader.load(getClass().getResource("companyLogo.fxml"));
+        Parent companyRoot = FXMLLoader.load(getClass().getResource("resources/companyLogo.fxml"));
         Scene companyScene = new Scene(companyRoot, 1000, 600);
         Arc arc = (Arc) companyScene.lookup("#arc");
 
