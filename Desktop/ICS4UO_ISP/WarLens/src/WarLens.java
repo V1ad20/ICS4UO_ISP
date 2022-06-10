@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -42,6 +43,7 @@ public class WarLens extends Application {
     int curIndex;
     String currentString;
     boolean keyEventActive;
+    boolean animationLocked;
 
     /**
      * This method contains all of the graphics code and calls needed
@@ -133,6 +135,8 @@ public class WarLens extends Application {
         Group root = new Group();
         Scene scene2 = new Scene(root, 640, 640);
 
+        textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2TextPart1.txt", root, scene2);
+
         Image frame1 = new Image("resources/characters/mainCharacter/frame1.png");
         Image frame2 = new Image("resources/characters/mainCharacter/frame2.png");
         Image frame3 = new Image("resources/characters/mainCharacter/frame3.png");
@@ -143,8 +147,9 @@ public class WarLens extends Application {
         testChar.setX(-10);
         testChar.setY(400);
         testChar.setPreserveRatio(true);
-        testChar.setScaleX(1);
-        testChar.setScaleY(1);
+        testChar.setScaleX(1.5);
+        testChar.setScaleY(1.5);
+        testChar.setEffect(new Glow(0.5));
 
         root.getChildren().add(testChar);
 
@@ -153,10 +158,6 @@ public class WarLens extends Application {
         rightMoveFrames.add(frame2);
         rightMoveFrames.add(frame3);
         rightMoveFrames.add(frame4);
-
-        checkTime = 0;
-        curTime = 0;
-        curIndex = 0;
 
         AnimationTimer runningRightAnim = new AnimationTimer() {
             @Override
@@ -173,17 +174,32 @@ public class WarLens extends Application {
                 }
             }
         };
-        runningRightAnim.start();
 
         TranslateTransition charMove = new TranslateTransition();
         charMove.setDuration(Duration.millis(5000));
         charMove.setNode(testChar);
-        charMove.setByX(300);
+        charMove.setByX(700);
         charMove.setCycleCount(1);
         charMove.setAutoReverse(false);
-        charMove.play();
 
-        textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root, scene2);
+        AnimationTimer scene2Anim = new AnimationTimer() {
+
+            @Override
+            public void handle(long arg0) {
+                if (!animationLocked) {
+                    checkTime = 0;
+                    curTime = 0;
+                    curIndex = 0;
+                    runningRightAnim.start();
+                    charMove.play();
+                    this.stop();
+                }
+            }
+        };
+        scene2Anim.start();
+
+        // textTool("Desktop/ICS4UO_ISP/WarLens/src/resources/scene2Text.txt", root,
+        // scene2);
 
         stage.setScene(scene2);
         stage.show();
@@ -271,6 +287,7 @@ public class WarLens extends Application {
         disInt = 0;
         curIndex = 0;
         keyEventActive = false;
+        animationLocked = true;
 
         AnimationTimer timer = new AnimationTimer() {
 
@@ -298,6 +315,7 @@ public class WarLens extends Application {
                     text.setVisible(false);
                     arrow.setVisible(false);
                     keyEventActive = false;
+                    animationLocked = false;
                     timer.stop();
                     question.setVisible(true);
                     button1.setVisible(true);
