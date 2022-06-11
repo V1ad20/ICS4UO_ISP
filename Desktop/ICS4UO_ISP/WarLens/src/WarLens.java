@@ -570,6 +570,80 @@ public class WarLens extends Application {
                         option1.setVisible(false);
                         option2.setVisible(false);
                         option3.setVisible(false);
+                        scene2QSet4(root, scene);
+                    }
+                });
+            }
+        });
+    }
+
+    public void scene2QSet4(Group root, Scene scene) {
+
+        Text question = new Text("When you feel hopeless, should you: (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set4/option1.png")));
+        option1.setLayoutX(150);
+        option1.setLayoutY(570);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set4/option2.png")));
+        option2.setLayoutX(270);
+        option2.setLayoutY(570);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        Button option3 = new Button();
+        option3.setGraphic(new ImageView(new Image("resources/buttons/set4/option3.png")));
+        option3.setLayoutX(390);
+        option3.setLayoutY(570);
+        option3.setPadding(Insets.EMPTY);
+        root.getChildren().add(option3);
+
+        root.requestFocus();
+
+        option3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                question.setText(
+                        "Correct! When you feel hopeless, talk to people with past experiences for advice! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        option3.setVisible(false);
                     }
                 });
             }
