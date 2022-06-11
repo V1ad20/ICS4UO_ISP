@@ -35,7 +35,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -367,78 +366,134 @@ public class WarLens extends Application {
         question.setFill(Color.WHITE);
         root.getChildren().add(question);
 
-        
+        Button focuspatch = new Button();
+        focuspatch.setLayoutX(-100);
+        root.getChildren().add(focuspatch);
 
-        ImageView normalButton = new ImageView(new Image("resources/buttons/set1/standard.png"));
-        ImageView incorrectButton = new ImageView(new Image("resources/buttons/set1/incorrect.png"));
-        ImageView correctButton = new ImageView(new Image("resources/buttons/set1/correct.png"));
-
-        Button focusPatch = new Button();
-        focusPatch.setGraphic(normalButton);
-        focusPatch.setLayoutX(10000);
-        root.getChildren().add(focusPatch); 
-
-        Button button1 = new Button();
-        button1.setGraphic(normalButton);
-        button1.setLayoutX(150);
-        button1.setLayoutY(570);
-        button1.setPadding(Insets.EMPTY);
-        root.getChildren().add(button1);
-
-        Text option1Text = new Text("Breathe very quickly");
-        option1Text.setX(button1.getLayoutX() + 12);
-        option1Text.setY(button1.getLayoutY() + 22);
-        option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 9));
-        option1Text.setWrappingWidth(80);
-        option1Text.setTextAlignment(TextAlignment.CENTER);
-        option1Text.setFill(Color.BLACK);
-        root.getChildren().add(option1Text);
-
-        button1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                button1.setGraphic(incorrectButton);
-                option1Text.setX(button1.getLayoutX()+11);
-                option1Text.setY(button1.getLayoutY()+30);
-                option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 16));
-                option1Text.setText("Incorrect!");     
-            }
-        });
-
-        Button button2 = new Button();
-        button2.setGraphic(normalButton);
-        button2.setLayoutX(270);
-        button2.setLayoutY(570);
-        button2.setPadding(Insets.EMPTY);
-        root.getChildren().add(button2);
-
-        Text option2Text = new Text("Take deep breathes");
-        option2Text.setX(button2.getLayoutX() + 11);
-        option2Text.setY(button2.getLayoutY() + 22);
-        option2Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 9));
-        option2Text.setWrappingWidth(80);
-        option2Text.setTextAlignment(TextAlignment.CENTER);
-        option2Text.setFill(Color.BLACK);
-        root.getChildren().add(option2Text);
-
-        button2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                button2.setGraphic(correctButton);
-                option2Text.setX(button2.getLayoutX()+13);
-                option2Text.setY(button2.getLayoutY()+30);
-                option2Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 16));
-                option2Text.setText("Correct!");     
-            }
-        });
-
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set1/option1.png")));
+        option1.setLayoutX(150);
+        option1.setLayoutY(570);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
 
         Button option2 = new Button();
-        Button option3 = new Button();
-
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set1/option2.png")));
+        option2.setLayoutX(270);
+        option2.setLayoutY(570);
+        option2.setPadding(Insets.EMPTY);
         root.getChildren().add(option2);
+
+        Button option3 = new Button();
+        option3.setGraphic(new ImageView(new Image("resources/buttons/set1/option3.png")));
+        option3.setLayoutX(390);
+        option3.setLayoutY(570);
+        option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                question.setText(
+                        "Correct! When Gleb is stressed, taking deep breathes will help him stay calm! (Press any key to continue)");
+                question.setY(535);
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        option3.setVisible(false);
+                        scene2QSet2(root, scene);
+                    }
+                });
+            }
+        });
+
+        option3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+            }
+        });
+    }
+
+    public void scene2QSet2(Group root, Scene scene) {
+
+        Text question = new Text("When you are stressed, should you:");
+        question.setX(20);
+        question.setY(550);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button focuspatch = new Button();
+        focuspatch.setLayoutX(-100);
+        root.getChildren().add(focuspatch);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set2/option1.png")));
+        option1.setLayoutX(150);
+        option1.setLayoutY(570);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set2/option2.png")));
+        option2.setLayoutX(270);
+        option2.setLayoutY(570);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        Button option3 = new Button();
+        option3.setGraphic(new ImageView(new Image("resources/buttons/set2/option3.png")));
+        option3.setLayoutX(390);
+        option3.setLayoutY(570);
+        option3.setPadding(Insets.EMPTY);
+        root.getChildren().add(option3);
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+            }
+        });
+
+        option3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                question.setText(
+                        "Correct! Not resting can cause Gleb to be even more stressed! (Press any key to continue)");
+                question.setY(535);
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        option3.setVisible(false);
+                    }
+                });
+            }
+        });
     }
 
     /**
