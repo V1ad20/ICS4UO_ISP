@@ -27,9 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
-import javafx.scene.text.Font;
 import javafx.scene.text.*;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -868,7 +866,7 @@ public class WarLens extends Application {
         option2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
-                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
                 root.requestFocus();
             }
         });
@@ -926,6 +924,15 @@ public class WarLens extends Application {
         textBox.setY(506);
         root.getChildren().add(textBox);
 
+        Text speakerText = new Text();
+        speakerText.setX(20);
+        speakerText.setY(540);
+        speakerText.setFont(Font.font("Helvetica", FontWeight.BOLD, 14));
+        speakerText.setWrappingWidth(600);
+        speakerText.setTextAlignment(TextAlignment.CENTER);
+        speakerText.setFill(Color.WHITE);
+        root.getChildren().add(speakerText);
+
         Text text = new Text();
         text.setX(20);
         text.setY(570);
@@ -957,6 +964,7 @@ public class WarLens extends Application {
                     this.stop();
                 } else if (checkTime != curTime) {
                     text.setText(currentString.substring(0, disInt + 1));
+                    speakerText.setText(speakerCache.get(curIndex));
                     checkTime = curTime;
                     disInt++;
                     keyEventActive = true;
@@ -968,6 +976,7 @@ public class WarLens extends Application {
             @Override
             public void handle(KeyEvent event) {
                 if (curIndex == textCache.size()) {
+                    speakerText.setVisible(false);
                     text.setVisible(false);
                     arrow.setVisible(false);
                     keyEventActive = false;
