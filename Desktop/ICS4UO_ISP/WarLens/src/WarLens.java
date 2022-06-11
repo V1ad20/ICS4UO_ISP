@@ -369,21 +369,21 @@ public class WarLens extends Application {
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set1/option1.png")));
         option1.setLayoutX(150);
-        option1.setLayoutY(570);
+        option1.setLayoutY(575);
         option1.setPadding(Insets.EMPTY);
         root.getChildren().add(option1);
 
         Button option2 = new Button();
         option2.setGraphic(new ImageView(new Image("resources/buttons/set1/option2.png")));
         option2.setLayoutX(270);
-        option2.setLayoutY(570);
+        option2.setLayoutY(575);
         option2.setPadding(Insets.EMPTY);
         root.getChildren().add(option2);
 
         Button option3 = new Button();
         option3.setGraphic(new ImageView(new Image("resources/buttons/set1/option3.png")));
         option3.setLayoutX(390);
-        option3.setLayoutY(570);
+        option3.setLayoutY(575);
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
@@ -443,21 +443,21 @@ public class WarLens extends Application {
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set2/option1.png")));
         option1.setLayoutX(150);
-        option1.setLayoutY(570);
+        option1.setLayoutY(575);
         option1.setPadding(Insets.EMPTY);
         root.getChildren().add(option1);
 
         Button option2 = new Button();
         option2.setGraphic(new ImageView(new Image("resources/buttons/set2/option2.png")));
         option2.setLayoutX(270);
-        option2.setLayoutY(570);
+        option2.setLayoutY(575);
         option2.setPadding(Insets.EMPTY);
         root.getChildren().add(option2);
 
         Button option3 = new Button();
         option3.setGraphic(new ImageView(new Image("resources/buttons/set2/option3.png")));
         option3.setLayoutX(390);
-        option3.setLayoutY(570);
+        option3.setLayoutY(575);
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
@@ -517,21 +517,21 @@ public class WarLens extends Application {
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set3/option1.png")));
         option1.setLayoutX(150);
-        option1.setLayoutY(570);
+        option1.setLayoutY(575);
         option1.setPadding(Insets.EMPTY);
         root.getChildren().add(option1);
 
         Button option2 = new Button();
         option2.setGraphic(new ImageView(new Image("resources/buttons/set3/option2.png")));
         option2.setLayoutX(270);
-        option2.setLayoutY(570);
+        option2.setLayoutY(575);
         option2.setPadding(Insets.EMPTY);
         root.getChildren().add(option2);
 
         Button option3 = new Button();
         option3.setGraphic(new ImageView(new Image("resources/buttons/set3/option3.png")));
         option3.setLayoutX(390);
-        option3.setLayoutY(570);
+        option3.setLayoutY(575);
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
@@ -591,21 +591,21 @@ public class WarLens extends Application {
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set4/option1.png")));
         option1.setLayoutX(150);
-        option1.setLayoutY(570);
+        option1.setLayoutY(575);
         option1.setPadding(Insets.EMPTY);
         root.getChildren().add(option1);
 
         Button option2 = new Button();
         option2.setGraphic(new ImageView(new Image("resources/buttons/set4/option2.png")));
         option2.setLayoutX(270);
-        option2.setLayoutY(570);
+        option2.setLayoutY(575);
         option2.setPadding(Insets.EMPTY);
         root.getChildren().add(option2);
 
         Button option3 = new Button();
         option3.setGraphic(new ImageView(new Image("resources/buttons/set4/option3.png")));
         option3.setLayoutX(390);
-        option3.setLayoutY(570);
+        option3.setLayoutY(575);
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
@@ -644,11 +644,257 @@ public class WarLens extends Application {
                         option1.setVisible(false);
                         option2.setVisible(false);
                         option3.setVisible(false);
+                        scene2QSet5(root, scene);
                     }
                 });
             }
         });
     }
+
+    public void scene2QSet5(Group root, Scene scene) {
+
+        Text question = new Text("Should you use the Internet as help? (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set5/option1.png")));
+        option1.setLayoutX(150);
+        option1.setLayoutY(575);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set5/option2.png")));
+        option2.setLayoutX(270);
+        option2.setLayoutY(575);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        Button option3 = new Button();
+        option3.setGraphic(new ImageView(new Image("resources/buttons/set5/option3.png")));
+        option3.setLayoutX(390);
+        option3.setLayoutY(575);
+        option3.setPadding(Insets.EMPTY);
+        root.getChildren().add(option3);
+
+        root.requestFocus();
+
+        option3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                question.setText(
+                        "Correct! Although the Internet can be helpful, make sure to only use trusted sources! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        option3.setVisible(false);
+                        scene2QSet6(root, scene);
+                    }
+                });
+            }
+        });
+    }
+
+    public void scene2QSet6(Group root, Scene scene) {
+
+        Text question = new Text("Is it a good idea to only use Internet sources that provide negative information? (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set6/option1.png")));
+        option1.setLayoutX(200);
+        option1.setLayoutY(575);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set6/option2.png")));
+        option2.setLayoutX(340);
+        option2.setLayoutY(575);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        root.requestFocus();
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                question.setText(
+                        "Correct! It is important to balance staying informed and staying positive! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        scene2QSet7(root, scene);
+                    }
+                });
+            }
+        });
+    }
+
+    public void scene2QSet7(Group root, Scene scene) {
+
+        Text question = new Text("Is an official government website a good Internet source? (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set6/option1.png")));
+        option1.setLayoutX(200);
+        option1.setLayoutY(575);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set6/option2.png")));
+        option2.setLayoutX(340);
+        option2.setLayoutY(575);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        root.requestFocus();
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                question.setText(
+                        "Correct! Government websites are one of the most reliable sources of information! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        scene2QSet8(root, scene);
+                    }
+                });
+            }
+        });
+    }
+
+    public void scene2QSet8(Group root, Scene scene) {
+
+        Text question = new Text("If an Internet source gives information that doesn't match your opinion, should you trust it? (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set6/option1.png")));
+        option1.setLayoutX(200);
+        option1.setLayoutY(575);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set6/option2.png")));
+        option2.setLayoutX(340);
+        option2.setLayoutY(575);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        root.requestFocus();
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                question.setText(
+                        "Correct! Don't avoid information that doesn't match your opinion! If it is true it may be very important! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                    }
+                });
+            }
+        });
+    }
+
 
     /**
      * Main Method that launches the application
