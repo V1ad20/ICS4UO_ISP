@@ -64,8 +64,26 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        splashScreen(mainStage);
-        //scene2(mainStage);
+        // splashScreen(mainStage);
+        scene2(mainStage);
+    }
+
+    public void fadeIn(Node root, int time) {
+        FadeTransition ft = new FadeTransition();
+        ft.setDuration(Duration.millis(time));
+        ft.setNode(root);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+    }
+
+    public void fadeOut(Node root, int time) {
+        FadeTransition ft = new FadeTransition();
+        ft.setDuration(Duration.millis(time));
+        ft.setNode(root);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
     }
 
     public void splashScreen(Stage stage) throws IOException {
@@ -273,6 +291,14 @@ public class WarLens extends Application {
         
 
         stage.setScene(scene2);
+        stage.show();
+    }
+
+    public void scene2P2(Stage stage){
+        Group root = new Group();
+        Scene scene = new Scene(root, 640, 640);
+
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -842,7 +868,7 @@ public class WarLens extends Application {
         option2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
-                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
                 root.requestFocus();
             }
         });
@@ -871,14 +897,6 @@ public class WarLens extends Application {
                 });
             }
         });
-    }
-    
-    public void scene2P2(Stage stage){
-        Group root = new Group();
-        Scene scene = new Scene(root, 640, 640);
-
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void textTool(String filepath, Group root, Scene scene) throws IOException {
@@ -947,7 +965,6 @@ public class WarLens extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
                 if (curIndex == textCache.size()) {
                     text.setVisible(false);
                     arrow.setVisible(false);
@@ -970,24 +987,7 @@ public class WarLens extends Application {
         });
         playText.start();
     }
-    
-    public void fadeIn(Node root, int time) {
-        FadeTransition ft = new FadeTransition();
-        ft.setDuration(Duration.millis(time));
-        ft.setNode(root);
-        ft.setFromValue(0);
-        ft.setToValue(1);
-        ft.play();
-    }
 
-    public void fadeOut(Node root, int time) {
-        FadeTransition ft = new FadeTransition();
-        ft.setDuration(Duration.millis(time));
-        ft.setNode(root);
-        ft.setFromValue(1);
-        ft.setToValue(0);
-        ft.play();
-    }
     /**
      * Main Method that launches the application
      * 
