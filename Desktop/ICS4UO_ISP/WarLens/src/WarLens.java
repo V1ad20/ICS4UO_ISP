@@ -357,18 +357,14 @@ public class WarLens extends Application {
 
     public void scene2QSet1(Group root, Scene scene) {
 
-        Text question = new Text("When you are stressed, should you:");
+        Text question = new Text("When you are stressed, should you: (click a button to select answer)");
         question.setX(20);
-        question.setY(550);
+        question.setY(535);
         question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
         question.setWrappingWidth(600);
         question.setTextAlignment(TextAlignment.CENTER);
         question.setFill(Color.WHITE);
         root.getChildren().add(question);
-
-        Button focuspatch = new Button();
-        focuspatch.setLayoutX(-100);
-        root.getChildren().add(focuspatch);
 
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set1/option1.png")));
@@ -391,20 +387,26 @@ public class WarLens extends Application {
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
+        root.requestFocus();
+
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
                 option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
             }
         });
 
         option2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
                 option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
                 question.setText(
-                        "Correct! When Gleb is stressed, taking deep breathes will help him stay calm! (Press any key to continue)");
+                        "Correct! When you are stressed, taking deep breathes will help you stay calm! (Press any key to continue)");
                 question.setY(535);
+                root.requestFocus();
                 scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                     @Override
                     public void handle(KeyEvent event) {
@@ -422,24 +424,21 @@ public class WarLens extends Application {
             @Override
             public void handle(ActionEvent arg0) {
                 option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
             }
         });
     }
 
     public void scene2QSet2(Group root, Scene scene) {
 
-        Text question = new Text("When you are stressed, should you:");
+        Text question = new Text("When you are stressed, should you: (click a button to select answer)");
         question.setX(20);
-        question.setY(550);
+        question.setY(535);
         question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
         question.setWrappingWidth(600);
         question.setTextAlignment(TextAlignment.CENTER);
         question.setFill(Color.WHITE);
         root.getChildren().add(question);
-
-        Button focuspatch = new Button();
-        focuspatch.setLayoutX(-100);
-        root.getChildren().add(focuspatch);
 
         Button option1 = new Button();
         option1.setGraphic(new ImageView(new Image("resources/buttons/set2/option1.png")));
@@ -462,27 +461,108 @@ public class WarLens extends Application {
         option3.setPadding(Insets.EMPTY);
         root.getChildren().add(option3);
 
+        root.requestFocus();
+
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
                 option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
             }
         });
 
         option2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
-                option3.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
             }
         });
 
         option3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent arg0) {
-                option2.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option3.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
                 question.setText(
-                        "Correct! Not resting can cause Gleb to be even more stressed! (Press any key to continue)");
+                        "Correct! Not resting can cause you to be even more stressed! (Press any key to continue)");
                 question.setY(535);
+                root.requestFocus();
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        question.setVisible(false);
+                        option1.setVisible(false);
+                        option2.setVisible(false);
+                        option3.setVisible(false);
+                        scene2QSet3(root, scene);
+                    }
+                });
+            }
+        });
+    }
+
+    public void scene2QSet3(Group root, Scene scene) {
+
+        Text question = new Text("When you are stressed, should you: (click a button to select answer)");
+        question.setX(20);
+        question.setY(535);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        Button option1 = new Button();
+        option1.setGraphic(new ImageView(new Image("resources/buttons/set3/option1.png")));
+        option1.setLayoutX(150);
+        option1.setLayoutY(570);
+        option1.setPadding(Insets.EMPTY);
+        root.getChildren().add(option1);
+
+        Button option2 = new Button();
+        option2.setGraphic(new ImageView(new Image("resources/buttons/set3/option2.png")));
+        option2.setLayoutX(270);
+        option2.setLayoutY(570);
+        option2.setPadding(Insets.EMPTY);
+        root.getChildren().add(option2);
+
+        Button option3 = new Button();
+        option3.setGraphic(new ImageView(new Image("resources/buttons/set3/option3.png")));
+        option3.setLayoutX(390);
+        option3.setLayoutY(570);
+        option3.setPadding(Insets.EMPTY);
+        root.getChildren().add(option3);
+
+        root.requestFocus();
+
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                root.requestFocus();
+            }
+        });
+
+        option3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                option1.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option2.setGraphic(new ImageView(new Image("resources/buttons/incorrect.png")));
+                option3.setGraphic(new ImageView(new Image("resources/buttons/correct.png")));
+                question.setText(
+                        "Correct! Always remember that you are never alone! (Press any key to continue)");
+                question.setY(535);
+                root.requestFocus();
                 scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                     @Override
                     public void handle(KeyEvent event) {
