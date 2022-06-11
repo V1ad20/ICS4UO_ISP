@@ -7,7 +7,6 @@
  * @since 2022-05-19
  */
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
@@ -65,26 +64,8 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        // splashScreen(mainStage);
-        scene2(mainStage);
-    }
-
-    public void fadeIn(Node root, int time) {
-        FadeTransition ft = new FadeTransition();
-        ft.setDuration(Duration.millis(time));
-        ft.setNode(root);
-        ft.setFromValue(0);
-        ft.setToValue(1);
-        ft.play();
-    }
-
-    public void fadeOut(Node root, int time) {
-        FadeTransition ft = new FadeTransition();
-        ft.setDuration(Duration.millis(time));
-        ft.setNode(root);
-        ft.setFromValue(1);
-        ft.setToValue(0);
-        ft.play();
+        splashScreen(mainStage);
+        //scene2(mainStage);
     }
 
     public void splashScreen(Stage stage) throws IOException {
@@ -292,14 +273,6 @@ public class WarLens extends Application {
         
 
         stage.setScene(scene2);
-        stage.show();
-    }
-
-    public void scene2P2(Stage stage){
-        Group root = new Group();
-        Scene scene = new Scene(root, 640, 640);
-
-        stage.setScene(scene);
         stage.show();
     }
 
@@ -899,6 +872,14 @@ public class WarLens extends Application {
             }
         });
     }
+    
+    public void scene2P2(Stage stage){
+        Group root = new Group();
+        Scene scene = new Scene(root, 640, 640);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void textTool(String filepath, Group root, Scene scene) throws IOException {
 
@@ -989,7 +970,24 @@ public class WarLens extends Application {
         });
         playText.start();
     }
+    
+    public void fadeIn(Node root, int time) {
+        FadeTransition ft = new FadeTransition();
+        ft.setDuration(Duration.millis(time));
+        ft.setNode(root);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+    }
 
+    public void fadeOut(Node root, int time) {
+        FadeTransition ft = new FadeTransition();
+        ft.setDuration(Duration.millis(time));
+        ft.setNode(root);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
+    }
     /**
      * Main Method that launches the application
      * 
