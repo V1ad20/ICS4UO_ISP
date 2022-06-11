@@ -901,6 +901,7 @@ public class WarLens extends Application {
 
     public void textTool(String filepath, Group root, Scene scene) throws IOException {
 
+        ArrayList<String> speakerCache = new ArrayList<String>();
         ArrayList<String> textCache = new ArrayList<String>();
 
         checkTime = 0;
@@ -913,6 +914,7 @@ public class WarLens extends Application {
         Scanner sc = new Scanner(new File(filepath));
 
         while (sc.hasNext()) {
+            speakerCache.add(sc.nextLine());
             textCache.add(sc.nextLine());
         }
         sc.close();
