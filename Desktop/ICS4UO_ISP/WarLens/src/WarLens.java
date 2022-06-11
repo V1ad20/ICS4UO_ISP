@@ -13,13 +13,13 @@ import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -331,7 +332,7 @@ public class WarLens extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                
+
                 if (curIndex == textCache.size()) {
                     text.setVisible(false);
                     arrow.setVisible(false);
@@ -342,7 +343,7 @@ public class WarLens extends Application {
                     if (disInt < currentString.length()) {
                         disInt = currentString.length();
                         text.setText(currentString);
-                    }else{
+                    } else {
                         disInt = 0;
                     }
                     currentString = textCache.get(curIndex);
@@ -366,22 +367,71 @@ public class WarLens extends Application {
         question.setFill(Color.WHITE);
         root.getChildren().add(question);
 
+        
+
         ImageView normalButton = new ImageView(new Image("resources/buttons/set1/standard.png"));
+        ImageView incorrectButton = new ImageView(new Image("resources/buttons/set1/incorrect.png"));
+        ImageView correctButton = new ImageView(new Image("resources/buttons/set1/correct.png"));
+
+        Button focusPatch = new Button();
+        focusPatch.setGraphic(normalButton);
+        focusPatch.setLayoutX(10000);
+        root.getChildren().add(focusPatch); 
+
         Button button1 = new Button();
         button1.setGraphic(normalButton);
-        button1.setLayoutX(200);
-        button1.setLayoutY(550);
+        button1.setLayoutX(150);
+        button1.setLayoutY(570);
         button1.setPadding(Insets.EMPTY);
         root.getChildren().add(button1);
 
         Text option1Text = new Text("Breathe very quickly");
-        option1Text.setX(220);
-        option1Text.setY(576);
-        option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 10));
+        option1Text.setX(button1.getLayoutX() + 12);
+        option1Text.setY(button1.getLayoutY() + 22);
+        option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 9));
         option1Text.setWrappingWidth(80);
         option1Text.setTextAlignment(TextAlignment.CENTER);
-        option1Text.setFill(Color.WHITE);
+        option1Text.setFill(Color.BLACK);
         root.getChildren().add(option1Text);
+
+        button1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                button1.setGraphic(incorrectButton);
+                option1Text.setX(button1.getLayoutX()+11);
+                option1Text.setY(button1.getLayoutY()+30);
+                option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 16));
+                option1Text.setText("Incorrect!");     
+            }
+        });
+
+        Button button2 = new Button();
+        button2.setGraphic(normalButton);
+        button2.setLayoutX(270);
+        button2.setLayoutY(570);
+        button2.setPadding(Insets.EMPTY);
+        root.getChildren().add(button2);
+
+        Text option2Text = new Text("Take deep breathes");
+        option2Text.setX(button2.getLayoutX() + 11);
+        option2Text.setY(button2.getLayoutY() + 22);
+        option2Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 9));
+        option2Text.setWrappingWidth(80);
+        option2Text.setTextAlignment(TextAlignment.CENTER);
+        option2Text.setFill(Color.BLACK);
+        root.getChildren().add(option2Text);
+
+        button2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                button2.setGraphic(correctButton);
+                option2Text.setX(button2.getLayoutX()+13);
+                option2Text.setY(button2.getLayoutY()+30);
+                option2Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 16));
+                option2Text.setText("Correct!");     
+            }
+        });
+
 
         Button option2 = new Button();
         Button option3 = new Button();
