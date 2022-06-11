@@ -18,6 +18,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -38,6 +40,7 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.fxml.*;
+import javafx.geometry.Insets;
 
 public class WarLens extends Application {
     PicturePixel[][] pictureArr;
@@ -60,7 +63,7 @@ public class WarLens extends Application {
      */
     public void start(Stage mainStage) throws IOException {
 
-        //splashScreen(mainStage);
+        // splashScreen(mainStage);
         scene2(mainStage);
     }
 
@@ -133,10 +136,9 @@ public class WarLens extends Application {
         Image frame2 = new Image("resources/characters/mainCharacter/frame2.png");
         Image frame3 = new Image("resources/characters/mainCharacter/frame3.png");
         Image frame4 = new Image("resources/characters/mainCharacter/frame4.png");
-        Image vignetteImage = new Image("resources/vignette.png");
 
         ImageView testChar = new ImageView();
-        ImageView vignette = new ImageView(vignetteImage);
+        ImageView vignette = new ImageView(new Image("resources/vignette.png"));
 
         testChar.setX(-10);
         testChar.setY(400);
@@ -198,8 +200,7 @@ public class WarLens extends Application {
         };
         scene2Anim1.start();
 
-        Image returnedTestImage = new Image("resources/returnedTest.png");
-        ImageView returnedTest = new ImageView(returnedTestImage);
+        ImageView returnedTest = new ImageView(new Image("resources/returnedTest.png"));
         returnedTest.setPreserveRatio(true);
         returnedTest.setScaleX(3);
         returnedTest.setScaleY(3);
@@ -222,15 +223,12 @@ public class WarLens extends Application {
         returnedTestRotate.setAutoReverse(false);
         returnedTestRotate.setNode(returnedTest);
 
-        
-
         AnimationTimer scene2Anim2 = new AnimationTimer() {
 
             @Override
             public void handle(long arg0) {
                 if (!animationLocked) {
-                    fadeOut(returnedTest, 2000);
-                    scene2Questions(root, scene2);
+                    scene2QSet1(root, scene2);
                     this.stop();
                 }
             }
@@ -287,8 +285,7 @@ public class WarLens extends Application {
 
         currentString = textCache.get(curIndex);
 
-        Image textBoxImage = new Image("resources/textBox.png");
-        ImageView textBox = new ImageView(textBoxImage);
+        ImageView textBox = new ImageView(new Image("resources/textBox.png"));
         textBox.setX(0);
         textBox.setY(506);
         root.getChildren().add(textBox);
@@ -302,8 +299,7 @@ public class WarLens extends Application {
         text.setFill(Color.WHITE);
         root.getChildren().add(text);
 
-        Image arrowImage = new Image("resources/arrow.png");
-        ImageView arrow = new ImageView(arrowImage);
+        ImageView arrow = new ImageView(new Image("resources/arrow.png"));
         arrow.setX(590);
         arrow.setY(605);
         arrow.setPreserveRatio(true);
@@ -327,6 +323,7 @@ public class WarLens extends Application {
                     text.setText(currentString.substring(0, disInt + 1));
                     checkTime = curTime;
                     disInt++;
+                    keyEventActive = true;
                 }
             }
         };
@@ -334,6 +331,7 @@ public class WarLens extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                
                 if (curIndex == textCache.size()) {
                     text.setVisible(false);
                     arrow.setVisible(false);
@@ -341,8 +339,13 @@ public class WarLens extends Application {
                     animationLocked = false;
                     playText.stop();
                 } else if (keyEventActive) {
+                    if (disInt < currentString.length()) {
+                        disInt = currentString.length();
+                        text.setText(currentString);
+                    }else{
+                        disInt = 0;
+                    }
                     currentString = textCache.get(curIndex);
-                    disInt = 0;
                     arrow.setVisible(false);
                     keyEventActive = false;
                     playText.start();
@@ -352,17 +355,40 @@ public class WarLens extends Application {
         playText.start();
     }
 
-    public void scene2Questions(Group root, Scene scene) {
+    public void scene2QSet1(Group root, Scene scene) {
 
-        //Question 1
-        Text text = new Text("When you are stressed, should you:");
-        text.setX(20);
-        text.setY(550);
-        text.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
-        text.setWrappingWidth(600);
-        text.setTextAlignment(TextAlignment.CENTER);
-        text.setFill(Color.WHITE);
-        root.getChildren().add(text);
+        Text question = new Text("When you are stressed, should you:");
+        question.setX(20);
+        question.setY(550);
+        question.setFont(Font.font("Helvetica", FontWeight.BOLD, 18));
+        question.setWrappingWidth(600);
+        question.setTextAlignment(TextAlignment.CENTER);
+        question.setFill(Color.WHITE);
+        root.getChildren().add(question);
+
+        ImageView normalButton = new ImageView(new Image("resources/buttons/set1/standard.png"));
+        Button button1 = new Button();
+        button1.setGraphic(normalButton);
+        button1.setLayoutX(200);
+        button1.setLayoutY(550);
+        button1.setPadding(Insets.EMPTY);
+        root.getChildren().add(button1);
+
+        Text option1Text = new Text("Breathe very quickly");
+        option1Text.setX(220);
+        option1Text.setY(576);
+        option1Text.setFont(Font.font("Helvetica", FontWeight.BOLD, 10));
+        option1Text.setWrappingWidth(80);
+        option1Text.setTextAlignment(TextAlignment.CENTER);
+        option1Text.setFill(Color.WHITE);
+        root.getChildren().add(option1Text);
+
+        Button option2 = new Button();
+        Button option3 = new Button();
+
+        root.getChildren().add(option2);
+        root.getChildren().add(option3);
+
     }
 
     /**
